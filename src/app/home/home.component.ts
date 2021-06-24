@@ -7,6 +7,7 @@ import { Ciudad } from '../models/ciudad';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Historico } from '../models/historico';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   page_number: number = 1;
   page_size_options = [10, 15, 25, 50, 100];
   constructor(
+    private _snackBar: MatSnackBar,
     private apiCiudad: ApiCiudadService,
     private apiClima: ApiClimaService,
     private apiHistorico : ApiHistoricoService
@@ -83,6 +85,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
               this.list_historico.data = response.data;
             })
           }
+        }
+        else {
+          this._snackBar.open("No se encontraron datos para la ciudad seleccionada.", "", { duration: 2300 });
         }
       })
     }
