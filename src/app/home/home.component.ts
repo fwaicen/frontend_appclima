@@ -18,7 +18,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class HomeComponent implements OnInit, AfterViewInit {
   iconURL: string = "";
   traerHistorico: boolean = false;
-  check!: boolean | false;
+  check: boolean = false;
+  check_historico: boolean = false;
   ciudad = {} as Ciudad;
   lstCiudades!: any[];
   lstClima!: any[];
@@ -52,6 +53,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   onChange(event: any){
     this.check = false;
+    this.check_historico = false;
     this.list_historico.data = [];
     var val = this.lstCiudades.filter(ciudad => ciudad.ciudadId == event.target.value);
     console.log(val[0].ciudadNombre);
@@ -83,6 +85,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
           if (this.traerHistorico) {
             this.apiHistorico.getHistorico(this.lstClima[0].PaisNombre,this.lstClima[0].CiudadNombre).subscribe(response => {
               this.list_historico.data = response.data;
+              this.check_historico = true;
             })
           }
         }

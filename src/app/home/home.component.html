@@ -26,7 +26,7 @@
             <span class="display-block"><strong>Temperatura:</strong> {{lstClima[0].Clima}}º C <strong>Sensación Térmica:</strong> {{lstClima[0].SensacionTermica}}º C</span>
     </mat-card>
     <br>
-    <div *ngIf="check && traerHistorico">
+    <div *ngIf="check && check_historico">
         <table mat-table  [dataSource]="list_historico"  class="mat-elevation-z4">
 
             <<ng-container matColumnDef="paisNombre">
@@ -53,5 +53,5 @@
             <tr mat-row *matRowDef="let row; columns: columnas"></tr>
         </table>
     </div>
-    <mat-paginator *ngIf="check && traerHistorico" [length]="list_historico.data.length" [pageSize]="page_size" [pageSizeOptions]="page_size_options" showFirstLastButtons></mat-paginator>
+    <mat-paginator *ngIf="check && check_historico" [length]="list_historico.data.length" [pageSize]="page_size" [pageSizeOptions]="page_size_options" showFirstLastButtons></mat-paginator>
 </div>
